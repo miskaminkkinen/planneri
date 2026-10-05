@@ -3,12 +3,30 @@ import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
+import { HashRouter, Routes, Route, Link } from 'react-router-dom'
+import Calendar from './pages/Calendar'
+import Notes from './pages/Notes'
+import Upcoming from './pages/Upcoming'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
+    
     <>
+    <HashRouter>
+      <nav>
+        <Link to="/">Calendar</Link>
+        <Link to="/upcoming">Upcoming</Link>
+        <Link to="/notes">Notes</Link>
+      </nav>
+
+      <Routes>
+        <Route path='/' element={<Calendar />} />
+        <Route path='/' element={<Upcoming />} />
+        <Route path='/' element={<Notes />} />
+      </Routes>
+    </HashRouter>
       <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
