@@ -5,8 +5,26 @@ import Calendar from './pages/Calendar'
 import Notes from './pages/Notes'
 import Upcoming from './pages/Upcoming'
 import {Navbar, Nav, Container, } from 'react-bootstrap'
+import {useState} from 'react'
+
+const testEvents = [
+  {
+    id: '1',
+    title: 'Hammaslääkäri',
+    start: '2026-10-15T14:00',
+    end: '2026-10-15T15:00',
+    allDay: false,
+  },
+  {
+    id: '2',
+    title: 'Sähkölasku',
+    start: '2026-10-20',
+    allDay: true,
+  },
+]
 
 function App() {
+  const [events, setEvents] = useState(testEvents)
   
   return (
     
@@ -20,7 +38,7 @@ function App() {
           <Nav>
             <Nav.Link as={Link} to = "/"> Kalenteri </Nav.Link>
             <Nav.Link as={Link} to = "/upcoming"> Tärkeät päivämäärät </Nav.Link>
-            <Nav.Link as={Link} to = "/"> Muistiinpanot </Nav.Link>
+            <Nav.Link as={Link} to = "/notes"> Muistiinpanot </Nav.Link>
           </Nav>
           </Navbar.Collapse>
         </Container>
@@ -28,9 +46,9 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path='/' element={<Calendar />} />
-        <Route path='/upcoming' element={<Upcoming />} />
-        <Route path='/notes' element={<Notes />} />
+        <Route path='/' element={<Calendar events = {events}/>} />
+        <Route path='/upcoming' element={<Upcoming events = {events}/>} />
+        <Route path='/notes' element={<Notes events = {events}/>} />
       </Routes>
     </HashRouter>
     
