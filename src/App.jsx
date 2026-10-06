@@ -25,6 +25,10 @@ const testEvents = [
 
 function App() {
   const [events, setEvents] = useState(testEvents)
+
+  function addEvent(newEvent){
+    setEvents([...events, {...newEvent, id: crypto.randomUUID() }])
+  }
   
   return (
     
@@ -46,7 +50,7 @@ function App() {
       </Navbar>
 
       <Routes>
-        <Route path='/' element={<Calendar events = {events}/>} />
+        <Route path='/' element={<Calendar events = {events} onAddEvent={addEvent}/>} />
         <Route path='/upcoming' element={<Upcoming events = {events}/>} />
         <Route path='/notes' element={<Notes events = {events}/>} />
       </Routes>
